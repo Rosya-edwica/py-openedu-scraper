@@ -4,6 +4,7 @@ from models import Course
 from program_tools import bring_program_to_single_structure
 import re
 
+
 async def get_all_courses() -> list[Course]:
     courses: list[Course] = []
     page_num = 0

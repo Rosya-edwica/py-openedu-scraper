@@ -1,0 +1,4 @@
+aiohttp
+asyncio
+psycopg2-binary
+python-dotenv
