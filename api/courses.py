@@ -14,6 +14,7 @@ async def get_all_courses() -> list[Course]:
         if not page_courses:
             break
         courses += page_courses
+        break
     return courses
 
 
@@ -42,7 +43,7 @@ def get_course(course_json: dict) -> Course:
         UniversityName=course_json["university_name"],
         Title=course_json["title"],
         Id=course_json["id"],
-        Description=course_json["description"],
+        Description=clear_desription(course_json["description"]),
         Language=rename_language(course_json["lang"]),
         Cover=course_json["cover"],
         Video=course_json["video"],
@@ -69,3 +70,8 @@ def clear_skills(text: str) -> list[str]:
     items = re.findall(r"<li>.*?</li>", text)
     items = [re.sub(r"<li>|</li>|;|·;|· ", "", i) for i in items]
     return items
+
+
+def clear_desription(text: str) -> str:
+    text = re.sub(r"<table>|</table>|<tbody>|</tbody>|<tr>|</tr>|<td>|</td>|<a href.*?<\/a>", "", text)
+    return text.strip()
