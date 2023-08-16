@@ -14,7 +14,6 @@ async def get_all_courses() -> list[Course]:
         if not page_courses:
             break
         courses += page_courses
-        break
     return courses
 
 
