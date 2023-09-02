@@ -28,13 +28,13 @@ class Database:
     def insert_many_courses(self, courses: list[Course]) -> None:
         cursor = self.connection.cursor()
 
-        query = """INSERT INTO course(
-            organization, course_id, title, description,
+        query = """INSERT INTO course(platform,
+            organization, title, description,
             certificate, language, duration_in_weeks,
             url, start_date, cover_url, video_url, price,
             skills, module_program, program, platform
         ) VALUES(
-            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'openedu'
+            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
         ) ON CONFLICT DO NOTHING"""
         cursor.executemany(query, courses)
         self.connection.commit()

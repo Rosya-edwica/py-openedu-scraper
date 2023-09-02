@@ -39,9 +39,10 @@ def get_course(course_json: dict) -> Course:
     else:
         program = program_tools.Module(DumpedProgram="", IsModule=False)
     course = Course(
+        Platform="Открытое образование",
         UniversityName=course_json["university_name"],
         Title=course_json["title"],
-        Id=course_json["id"],
+        # Id=course_json["id"],
         Description=clear_desription(course_json["description"]),
         Language=rename_language(course_json["lang"]),
         Cover=course_json["cover"],

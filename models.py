@@ -2,13 +2,14 @@ from typing import NamedTuple
 
 
 class Course(NamedTuple):
+    Platform: str
     UniversityName: str
-    Id: str
+    # Id: str
     Title: str
     Description: str
     Certification: bool
-    Language: str
     Duration: int | None
+    Language: str
     Url: str
     StartDate: str
     Cover: str
