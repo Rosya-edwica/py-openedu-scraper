@@ -1,4 +1,5 @@
 import api
+import requests
 import program_tools
 from models import Course
 from program_tools import bring_program_to_single_structure
@@ -8,6 +9,8 @@ import re
 async def get_all_courses() -> list[Course]:
     courses: list[Course] = []
     page_num = 0
+    courses_count = await get_courses_count()
+    print("Количество курсов: ", courses_count) 
     while True:
         page_num += 1
         page_courses = await get_page_courses(page_num)
@@ -28,6 +31,11 @@ async def get_page_courses(page_num: int) -> list[Course]:
         course = get_course(item)
         courses.append(course)
     return courses
+
+async def get_courses_count() -> int:
+    url = f"https://openedu.ru/api/catalog_export/v0/catalog_courses"
+    resp = await api.get_json(url)
+    return resp["total"]
 
 
 def get_course(course_json: dict) -> Course:
