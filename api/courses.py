@@ -1,5 +1,4 @@
 import api
-import requests
 import program_tools
 from models import Course
 from program_tools import bring_program_to_single_structure
